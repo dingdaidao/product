@@ -66,7 +66,7 @@ public class LoginControl {
         return "redirect:list";
     }
 
-    @GetMapping("/queryList")
+    @PostMapping("/queryList")
     public ModelAndView queryList(HttpServletRequest httpServletRequest,ModelAndView modelAndView) {
         String name = httpServletRequest.getParameter("name");
         String no = httpServletRequest.getParameter("no");
