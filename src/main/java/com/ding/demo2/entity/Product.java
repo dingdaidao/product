@@ -1,5 +1,7 @@
 package com.ding.demo2.entity;
 
+import java.util.Date;
+
 public class Product {
     private int id;
     private String name;
@@ -7,7 +9,7 @@ public class Product {
     private String size;
     private String no;
     private int count;
-    private String updatetime;
+    private Date updatetime;
 
     public int getId() {
         return id;
@@ -57,11 +59,11 @@ public class Product {
         this.count = count;
     }
 
-    public String getUpdatetime() {
+    public Date getUpdatetime() {
         return updatetime;
     }
 
-    public void setUpdatetime(String updatetime) {
+    public void setUpdatetime(Date updatetime) {
         this.updatetime = updatetime;
     }
 

@@ -2,16 +2,14 @@ package com.ding.demo2.utils;
 
 import com.ding.demo2.entity.Product;
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.poi.ss.usermodel.CellType.*;
 
 /**
  * 路径：com.example.demo.utils
@@ -160,72 +158,47 @@ public class ExcelUtil {
      * 修改描述：
      * 修改时间：
      */
-    public static List<Object[]> importExcel(String fileName) {
-        System.out.println("导入解析开始，fileName:" + fileName);
+    public static List<Product> importExcel(String fileName) {
+        InputStream file = null;
         try {
-            List<Object[]> list = new ArrayList<>();
-            InputStream inputStream = new FileInputStream(fileName);
+            file = new FileInputStream(fileName);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        List<Product> answers = new ArrayList<>();
+        try {
             Workbook workbook = null;
             try {
-                workbook = new XSSFWorkbook(inputStream);
-            } catch (IOException e) {
+                workbook = WorkbookFactory.create((file));
+            } catch (InvalidFormatException e) {
                 e.printStackTrace();
-                workbook = new HSSFWorkbook(inputStream);
             }
-            Sheet sheet = workbook.getSheetAt(0);
-            //获取sheet的行数
-            int rows = sheet.getPhysicalNumberOfRows();
-            for (int i = 0; i < rows; i++) {
-                //过滤表头行
-                if (i == 0) {
-                    continue;
+            //有多少个sheet
+            int sheets = workbook.getNumberOfSheets();
+            for (int i = 0; i < sheets; i++) {
+                Sheet sheet = workbook.getSheetAt(i);
+                //获取多少行
+                int rows = sheet.getPhysicalNumberOfRows();
+                Product answer = null;
+                //遍历每一行，注意：第 0 行为标题
+                for (int j = 1; j < rows; j++) {
+                    answer = new Product();
+                    //获得第 j 行
+                    Row row = sheet.getRow(j);
+                    answer.setNo(row.getCell(0).getStringCellValue());
+                    answer.setName(row.getCell(1).getStringCellValue());
+                    answer.setSize(row.getCell(2).getStringCellValue());
+                    answer.setUpdatetime(row.getCell(3).getDateCellValue());
+                    answer.setCount((int)row.getCell(4).getNumericCellValue());
+                    answers.add(answer);
+                    System.out.println(answer.toString());
                 }
-                //获取当前行的数据
-                Row row = sheet.getRow(i);
-                Object[] objects = new Object[row.getPhysicalNumberOfCells()];
-                int index = 0;
-                for (Cell cell : row) {
-                    if (cell.getCellType() == (NUMERIC.ordinal())) {
-                        objects[index] = (int) cell.getNumericCellValue();
-                    }
-                    if (cell.getCellType() == (STRING.ordinal())) {
-                        objects[index] = cell.getStringCellValue();
-                    }
-                    if (cell.getCellType() == (BOOLEAN.ordinal())) {
-                        objects[index] = cell.getBooleanCellValue();
-                    }
-                    if (cell.getCellType() == (ERROR.ordinal())) {
-                        objects[index] = cell.getErrorCellValue();
-                    }
-                    index++;
-                }
-                list.add(objects);
             }
-            System.out.println("导入文件解析成功！");
-            return list;
-        } catch (Exception e) {
-            System.out.println("导入文件解析失败！");
-            e.printStackTrace();
-        }
-        return null;
-    }
 
-    //测试导入
-    public static void main(String[] args) {
-        try {
-            String fileName = "C:\\Users\\Administrator\\Downloads\\zaiko.xlsx";
-            List<Object[]> list = importExcel(fileName);
-            for (int i = 0; i < list.size(); i++) {
-                Product product = new Product();
-                product.setCount((Integer) list.get(i)[0]);
-                product.setName((String) list.get(i)[1]);
-                product.setModel((String) list.get(i)[2]);
-                product.setNo((String) list.get(i)[3]);
-                System.out.println(product.toString());
-            }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return answers;
     }
 
 }

@@ -6,15 +6,54 @@
 </head>
 <body>
 <div>
-    <h3 > 你好！</h3>
+    <h3> 你好！</h3>
     <form action="loadFile" method="post">
         <table>
             <tr>
                 <td></td>
-                <td><input type="submit" name="加载文件" ></input></td>
+                <td><input type="submit" name="加载文件"></input></td>
             </tr>
         </table>
     </form>
+    <br>
+    <br>
+    <br>
+    <form action="queryList" method="get">
+        <table>
+            <tr>
+                <td>货号：</td>
+                <td><input type="text" name="no"></input></td>
+            </tr>
+
+            <tr>
+                <td>商品名：</td>
+                <td><input type="text" name="name"></input></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="搜索"></input></td>
+            </tr>
+        </table>
+    </form>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>货号</th>
+            <th>商品名</th>
+            <th>尺寸</th>
+            <th>存货</th>
+            <th>更新日期</th>
+        </tr>
+        <tr data-th-each="product:${product}">
+            <td data-th-text="${product.no}"></td>
+            <td data-th-text="${product.name}"></td>
+            <td data-th-text="${product.size}"></td>
+            <td data-th-text="${product.count}"></td>
+            <td data-th-text="${product.updatetime}"></td>
+
+        </tr>
+        </thead>
+    </table>
 </div>
 </body>
 </html>
