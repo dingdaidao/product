@@ -185,11 +185,12 @@ public class ExcelUtil {
                     answer = new Product();
                     //获得第 j 行
                     Row row = sheet.getRow(j);
-                    answer.setNo(row.getCell(0).getStringCellValue());
-                    answer.setName(row.getCell(1).getStringCellValue());
-                    answer.setSize(row.getCell(2).getStringCellValue());
-                    answer.setUpdatetime(row.getCell(3).getDateCellValue());
-                    answer.setCount((int)row.getCell(4).getNumericCellValue());
+                    answer.setStock_name(row.getCell(0).getStringCellValue());
+                    answer.setCommodity_sku(row.getCell(1).getStringCellValue());
+                    answer.setCommodity_name(row.getCell(2).getStringCellValue());
+                    answer.setSize(row.getCell(3).getStringCellValue());
+                    answer.setStock((int)row.getCell(4).getNumericCellValue());
+                    answer.setDate(row.getCell(5).getStringCellValue());
                     answers.add(answer);
                     System.out.println(answer.toString());
                 }

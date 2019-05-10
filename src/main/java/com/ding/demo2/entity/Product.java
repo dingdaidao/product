@@ -4,12 +4,13 @@ import java.util.Date;
 
 public class Product {
     private int id;
-    private String name;
-    private String model;
+    private String stock_name;
+    private String commodity_sku;
+    private String commodity_name;
     private String size;
-    private String no;
-    private int count;
-    private Date updatetime;
+    private String color;
+    private int stock;
+    private String date;
 
     public int getId() {
         return id;
@@ -19,20 +20,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStock_name() {
+        return stock_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStock_name(String stock_name) {
+        this.stock_name = stock_name;
     }
 
-    public String getModel() {
-        return model;
+    public String getCommodity_sku() {
+        return commodity_sku;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setCommodity_sku(String commodity_sku) {
+        this.commodity_sku = commodity_sku;
+    }
+
+    public String getCommodity_name() {
+        return commodity_name;
+    }
+
+    public void setCommodity_name(String commodity_name) {
+        this.commodity_name = commodity_name;
     }
 
     public String getSize() {
@@ -43,40 +52,41 @@ public class Product {
         this.size = size;
     }
 
-    public String getNo() {
-        return no;
+    public String getColor() {
+        return color;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public int getCount() {
-        return count;
+    public int getStock() {
+        return stock;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public String getDate() {
+        return date;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", model='" + model + '\'' +
+                ", stock_name='" + stock_name + '\'' +
+                ", commodity_sku='" + commodity_sku + '\'' +
+                ", commodity_name='" + commodity_name + '\'' +
                 ", size='" + size + '\'' +
-                ", no='" + no + '\'' +
-                ", count=" + count +
-                ", updatetime='" + updatetime + '\'' +
+                ", color='" + color + '\'' +
+                ", stock=" + stock +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

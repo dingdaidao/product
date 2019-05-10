@@ -1,0 +1,103 @@
+body {
+    background-color: #fafafa;
+}
+.layui-tab {
+    margin-top: 0;
+    /* 去除头部外边距 */
+}
+.layui-tab .layui-tab-title {
+    border: 0;
+}
+.layui-tab-title .layui-this {
+/* 重叠默认导航选中样式     */
+
+height: 40px;
+background-color: #FC636B;
+border-radius: 0;
+color: #fff;
+animation: tabmove 0.2s;
+}
+.layui-tab-title .layui-this::after {
+border: 0;
+
+}
+/* 修改默认移动端nav下拉按钮start */
+.layui-tab-bar {
+    background-color: #393D49;
+ border: 1px solid #393D49;
+}
+/* 修改默认移动端nav下拉按钮end */
+
+.logo {
+background-color: #FC636B;
+color: #fff;
+}
+.logo {
+    font-size: 16px;
+    text-align: center;
+}
+.gonggaodian {
+    position: absolute;
+    top: 45px;
+    left: 170px;
+    transform: scale(.8);
+    border-radius: 5px;
+}
+/* 活动公告start */
+.layui-card:nth-child(1) {
+    border-top: 2px solid #FC636B;
+}
+.layui-card:nth-child(2) {
+    border-top: 2px solid #009688;
+}
+
+.layui-card:nth-child(3) {
+    border-top: 2px solid #393D49;
+}
+
+.layui-card:nth-child(4) {
+    border-top: 2px solid #1E9FFF;
+}
+.layui-card:nth-child(5) {
+    border-top: 2px solid #FFB800;
+}
+.layui-card:nth-child(6) {
+    border-top: 2px solid #FF5722;
+}
+.layui-card:nth-child(7) {
+    border-top: 2px solid #01AAED;
+}
+.layui-card:nth-child(8) {
+    border-top: 2px solid #2F4056;
+}
+/* 活动公告end */
+/* 仓库查询表单start */
+.layui-form-select {
+
+width: 150px;
+display: inline-block;
+position: relative;
+top: 1px;
+
+}
+.layui-select-title input {
+height: 30px !important;
+
+}
+.layui-form-select dl dd.layui-this {
+    background-color: #393D49;
+}
+/* 仓库查询表单end */
+/* 动画组 */
+
+@keyframes tabmove {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

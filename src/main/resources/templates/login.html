@@ -1,29 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <div>
-        <div>登录系统</div>
-        <form action="loginVerify" method="post">
-            <table>
-                <tr>
-                    <td>用户名：</td>
-                    <td><input type="text" name="username" ></input></td>
-                </tr>
+<html lang="zxx">
 
-                <tr>
-                    <td>密码：</td>
-                    <td><input type="password" name="password" ></input></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" name="提交" ></input></td>
-                </tr>
-            </table>
-        </form>
-    </div>
+<head>
+    <title>CloudKinTo 日本海外仓服务</title>
+	<!-- Meta tag Keywords -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!-- //Meta tag Keywords -->
+
+	<!-- Custom-Files -->
+	      <link rel="shortcut icon" href="./logo.ico" />
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<!-- Bootstrap-Core-CSS -->
+	<link rel="stylesheet" href="../static/css/style.css" type="text/css" media="all" />
+	<!-- Style-CSS -->
+	<link href="../static/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Font-Awesome-Icons-CSS -->
+	<!-- //Custom-Files -->
+
+	<!-- Web-Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+	 rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+	<!-- //Web-Fonts -->
 </head>
+
 <body>
+	<!-- header -->
+<header id="home">
+      <div class="container">
+        <div
+          class="header d-lg-flex justify-content-between align-items-center py-sm-3 py-2 px-sm-2 px-1"
+        >
+          <!-- logo -->
+          <div id="logo">
+            <!-- <h1 class="letter-wrap"><a href="index.html" >CloudKinTo</a></h1> -->
+            <!-- <h1 class="letter-wrap"><a href="index.html" >CloudKinTo</a></h1> -->
+            <a href="index.html" class="logo_click"><img src="../static/images/logo.png"></a>
+          </div>
+          <!-- //logo -->
+          <!-- nav -->
+          <div class="nav_w3ls ml-lg-5">
+            <nav>
+              <label for="drop" class="toggle">Menu</label>
+              <input type="checkbox" id="drop" />
+              <ul class="menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="portfolio.html">流程资费</a></li>
+                <li><a href="index.html#portfolio">FAQ帮助</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+                <li class="ml-xl-5 ml-lg-2 mt-lg-0 mt-sm-4 mt-3">
+                  <a href="login.html" class="reqe-button text-uppercase"
+                    >登录</a
+                  >
+                  <a href="register.html" class="reqe-button text-uppercase"
+                    >注册</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- //nav -->
+        </div>
+      </div>
+    </header>
+	<!-- //header -->
+	<!-- inner banner -->
+	<div class="inner-banner-w3ls d-flex flex-column justify-content-center align-items-center" id="movetop">
+	</div>
+	<!-- //inner banner -->
+	<!-- breadcrumbs -->
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb d-flex justify-content-center">
+			<li class="breadcrumb-item">
+				<a href="index.html">首页</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">登录</li>
+		</ol>
+	</nav>
+	<!-- //breadcrumbs -->
+
+	<!-- login  -->
+	<div class="modal-body align-w3">
+		<form action="/loginVerify" method="post" class="p-sm-3">
+			<div class="form-group">
+				<label for="recipient-name" class="col-form-label">用户名</label>
+				<input type="text" class="form-control" placeholder="请输入您的用户名" name="Name" id="recipient-name" required="">
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-form-label">密码</label>
+				<input type="password" class="form-control" placeholder="*****" name="Password" id="password" required="">
+			</div>
+			<div class="right-w3l">
+				<input type="submit" class="form-control bg-theme" value="Login">
+			</div>
+			<div class="row sub-w3l my-3">
+				<div class="col-sm-6 sub-w3layouts_hub">
+					<input type="checkbox" id="brand1" value="">
+					<label for="brand1" class="text-secondary">
+						<span></span>记住我?</label>
+				</div>
+				<div class="col-sm-6 forgot-w3l text-sm-right">
+					<a href="#" class="text-secondary">忘记密码?</a>
+				</div>
+			</div>
+			<p class="text-center dont-do text-secondary">还没有账户?
+				<a href="register.html" class="text-theme-2 font-weight-bold">
+					现在注册</a>
+			</p>
+		</form>
+	</div>
+	<!-- //login -->
+
+	<!-- footer -->
+ <footer class="footer py-md-5 pt-md-3 pb-sm-5">
+      <div class="container">
+        <div class="row p-sm-4 px-3 py-3">
+          <div class="col-lg-6 footer-top mt-md-0 mt-sm-5">
+            <h2>
+           <h3 class="mb-3 w3f_title">   联系我们</h3>
+              <hr />
+              
+            </h2>
+            <div class="fv3-contact mt-2">
+              <p>
+                邮箱: <a href="mailto:Jackinbob@sanchoum.com">Jackinbob@sanchoum.com</a>
+              </p>
+            </div>
+            <div class="fv3-contact my-2">
+             <p> 电话: 0512-62764456</p>
+            </div>
+            <div class="fv3-contact">
+              <p>地址: 江苏省苏州市<br> 园区新平街388-A1-408</p>
+            </div>
+          </div>
+          <div class="col-lg-3  col-md-6 mt-lg-0 mt-4">
+            <div class="footerv2-w3ls">
+              <h3 class="mb-3 w3f_title">支持</h3>
+              <hr />
+              <ul class="list-w3pvtits">
+                <li>
+                  <a href="#portfolio">
+                    常见问题
+                  </a>
+                </li>
+                <li class="my-2">
+                  <a href="about.html">
+                    服务协议
+                  </a>
+                </li>
+                <li class="my-2">
+                  <a href="portfolio.html">
+                    隐私政策
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a href="single.html">
+                    开发文档
+                  </a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                    加入我们
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3  col-md-6 mt-lg-0 mt-4">
+            <div class="footerv2-w3ls">
+              <h3 class="mb-3 w3f_title">关于</h3>
+              <hr />
+              <ul class="list-w3pvtits">
+                <li>
+                  <a href="about.html">
+                    关于我们
+                  </a>
+                </li>
+                <li class="my-2">
+                  <a href="single.html">
+                    联系我们
+                  </a>
+                </li>
+                <li class="my-2">
+                  <a href="portfolio.html">
+                    合作伙伴
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+      <!-- //footer bottom -->
+    </footer>
+    <!-- //footer -->
+    <!-- copyright -->
+    <div class="cpy-right text-center bg-theme">
+      <p class="text-wh">
+        Copyright &copy; 2019.Company name All rights reserved.
+      </p>
+    </div>
+	<!-- //copyright -->
+	<!-- move top icon -->
+	<a href="#movetop" class="move-top text-center">
+		<span class="fa fa-level-up" aria-hidden="true"></span>
+	</a>
+	<!-- //move top icon -->
 
 </body>
+
 </html>
