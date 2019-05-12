@@ -12,7 +12,7 @@ spring:
     name: demo
     url: jdbc:mysql://127.0.0.1:3306/demo
     username: root
-    password: 12345678
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   mvc:
     static-path-pattern: /static/**

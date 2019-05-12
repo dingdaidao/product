@@ -73,9 +73,7 @@ color: #fff;
 /* 活动公告end */
 /* 仓库查询表单start */
 .layui-form-select {
-
-width: 150px;
-display: inline-block;
+width: 100% !important;
 position: relative;
 top: 1px;
 
@@ -100,4 +98,15 @@ height: 30px !important;
     100% {
         transform: scale(1);
     }
+}
+.my-btn-box {
+    width: 100%;
+    overflow: hidden;
+    height: 50px !important;
+}
+.my-btn-box .fl {
+    float: left;
+}
+.my-btn-box .fr {
+    float: right;
 }

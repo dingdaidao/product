@@ -11,6 +11,40 @@
     <link rel="stylesheet" href="../static/layui/css/layui.css"/>
     <link rel="stylesheet" href="../static/css/base.css"/>
     <link rel="stylesheet" href="../static/css/backstage.css"/>
+    <style>
+        .layui-form-label {
+            width: 100px;
+        }
+
+        .layui-input-block {
+            margin-left: 130px;
+            min-height: 36px
+        }
+
+        .layui-form-select dl {
+            max-height: 450px;
+        }
+
+        .layui-form-select {
+            width: 100%;
+
+        }
+
+        .layui-select-title input {
+            height: 38px !important;
+        }
+
+        #test {
+            overflow-y: scroll;
+        }
+
+        body {
+            overflow-y: scroll;
+        }
+
+        /* 禁止刷新后出现横向滚动条 */
+    </style>
+
 </head>
 <body>
 <div class="logo">
@@ -54,36 +88,155 @@
             </div>
         </div>
         <div class="layui-tab-item">
-            <div class="layui-form ">
-                <div class="layui-inline">
-                    <input class="layui-input" name="commodity_sku" id="demoReload" autocomplete="off">
-                </div>
-                <!-- <select name="quiz" class="quiz quiz1" lay-verify="" id="demoReload" name="stock_name">
-                  <option value="">请选择一个仓库</option>
-                  <option value="全部">全部</option>
-                  <option value="新柏">新柏</option>
-                  <option value="新川">新川</option>
-                  <option value="丸荣">丸荣</option>
-                  <option value="大阪">大阪</option>
-                </select>
-                <select name="city" class="quiz" lay-verify="" lay-search>
-                  <option value="" selected>请输入SKU</option>
-                  <option value="asc12312d">asc12312d</option>
-                  <option value="asc12312d">asc12312d</option>
-                  <option value="asc12312d">asc12312d</option>
-                  ……
-                </select> -->
-                <button
-                        class="layui-btn layui-btn-sm layui-bg-black"
-                        data-type="reload">
-                    搜索
-                </button>
+            <!-- 工具集 -->
+            <div class="my-btn-box">
+    <span class="fl">
+        <a class="layui-btn btn-add btn-default" id="btn-add">添加</a>
+        <a class="layui-btn btn-add btn-default" id="btn-refresh">刷新</a>
+    </span>
+                <span class="fr">
+        <div class="demoTable">
+            <span class="layui-form-label">查询</span>
+            <!--// 搜索ID：-->
+        <div class="layui-inline">
+         <input class="layui-input" name="id" id="demoReload" autocomplete="off" placeholder="请输入搜索条件">
+        </div>
+        <button class="layui-btn" data-type="reload">查询</button>
+        </div>
+    </span>
             </div>
-            <table
-                    class="layui-hide"
-                    id="LAY_table_user"
-                    lay-filter="user"
-            ></table>
+            <table class="layui-hide" id="test" lay-filter="test"></table>
+            <script type="text/html" id="barOption">
+                <a class="layui-btn layui-btn-mini layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-mini layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+            </script>
+
+
+            <!-- form表单的信息 -->
+            <!-- 这里是弹出层的表单信息
+            表单的id用于表单的选择，style是在本页隐藏，只有点击编辑才会弹出 -->
+            <div class="layui-row" id="popUpdateTest" style="display:none;">
+                <div class="layui-col-md10">
+                    <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
+
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">库存数量</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="newstock" required lay-verify="required" autocomplete="off"
+                                       placeholder="请输入库存数量" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">更新时间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="newdate" required lay-verify="required" autocomplete="off"
+                                       placeholder="请输入更新时间" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item" style="margin-top:40px">
+                            <div class="layui-input-block">
+                                <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo11">确认修改
+                                </button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 添加 -->
+            <div class="layui-row" id="add_commodity" style="display:none;">
+                <div class="layui-col-md10">
+                    <form class="layui-form layui-from-pane" action="添加信息提交地址" style="margin-top:20px" method="post">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">店铺名</label>
+                            <div class="layui-input-block">
+                                <select name="shop_name" lay-filter="shop_name" lay-search>
+                                    <option value="">请选择您的店铺</option>
+                                    <optgroup label="亚马逊平台">
+                                        <option value="MWPO">MWPO</option>
+                                        <option value="SCM">SCM</option>
+                                        <option value="PRORS">PRORS</option>
+                                        <optgroup label="日本乐天平台">
+                                            <option value="乐天1号">乐天1号</option>
+                                            <optgroup label="其他小众平台">
+                                                <option value="QOO10">QOO10</option>
+                                                <option value="YAHOO">YAHOO</option>
+                                                <option value="WOWMA">WOWMA</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">仓库名</label>
+                            <div class="layui-input-block">
+                                <select name="stock_name" lay-filter="eqptType">
+                                    <option value="">请选择一个仓库</option>
+                                    <optgroup label="东京地区">
+                                        <option value="新柏">新柏</option>
+                                        <optgroup label="大阪地区">
+                                            <option value="新川">新川</option>
+                                            <option value="丸荣">丸荣</option>
+                                            <option value="大阪">大阪</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">产品SKU</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="commodity_sku" required lay-verify="required"
+                                       autocomplete="off" placeholder="请输入新的产品SKU" class="layui-input">
+                            </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">产品名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="commodity_name" required lay-verify="required"
+                                       autocomplete="off" placeholder="请输入产品名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">尺寸(cm)</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="size" required lay-verify="required" autocomplete="off"
+                                       placeholder="长*款*高" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">颜色</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="color" required lay-verify="required" autocomplete="off"
+                                       placeholder="请输入产品颜色" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">库存数量</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="stock" required lay-verify="required" autocomplete="off"
+                                       placeholder="请输入库存数量" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">更新时间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="date" required lay-verify="required" class="layui-input"
+                                       id="test1" placeholder="请选择时间">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item" style="margin-top:40px">
+                            <div class="layui-input-block">
+                                <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo1">立即提交
+                                </button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="layui-tab-item">4</div>
@@ -91,82 +244,250 @@
     </div>
 </div>
 
-<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery-3.3.1.min.js"></script>
 <script src="../static/layui/layui.js"></script>
 <script src="../static/js/backstage.js"></script>
 <script>
-    //Demo
-    layui.use("form", function () {
-        var form = layui.form;
 
-        //监听提交
-        form.on("submit(formDemo)", function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
     //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
     layui.use("element", function () {
         var element = layui.element;
 
         //…
     });
-    // 表格start
-    layui.use("table", function () {
-        var table = layui.table;
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
 
-        //第一个实例
-        table.render({
-            elem: "#LAY_table_user",
-            method: "post",
-            url: "http://localhost:8082/queryList", //数据接口
-            cols: [
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+    });
+
+    layui.use(['table', 'form', 'layer', 'jquery'], function () {
+
+// 操作对象
+        var form = layui.form
+            , table = layui.table
+            , layer = layui.layer
+            , $ = layui.jquery
+        // 表格渲染
+        var tableIns = table.render({
+            elem: '#test'                  //指定原始表格元素选择器（推荐id选择器）   //容器高度
+            , toolbar: '#toolbarDemo' //表格头部的工具栏的开启
+            , title: '商品数据表'
+            , cols: [
                 [
                     //表头
                     {
-                        field: "stock_name",
-                        title: "仓库名",
+                        field: "shop_name",
+                        title: "店铺名",
                         width: 100,
                         sort: true,
-                        fixed: "left"
+
+
                     },
-                    {field: "commodity_sku", title: "产品SKU", width: 150},
+                    {field: "stock_name", title: "仓库名",},
+                    {field: "commodity_sku", title: "产品SKU"},
                     {
                         field: "commodity_name",
                         title: "产品名",
-                        width: 150,
                         sort: true
                     },
-                    {field: "size", title: "尺寸(cm)", width: 100},
-                    {field: "color", title: "颜色", width: 100},
-                    {field: "stock", title: "库存数量", width: 100, sort: true},
-                    {field: "date", title: "更新时间", width: 100, sort: true}
+                    {field: "size", title: "尺寸(cm)"},
+                    {field: "color", title: "颜色"},
+                    {field: "stock", title: "库存数量", sort: true},
+                    {field: "date", title: "更新时间", sort: true}
+                    , {fixed: 'right', title: '操作', toolbar: '#barOption', width: 160}
                 ]
-            ],
-            page: true   //开启分页
-            , limit: 10   //默认十条数据一页
-            , limits: [10, 20, 30, 50], //数据分页条
-            id: 'testReload',
+            ]
 
+            , id: 'dataCheck'
+            // , url: '../json/decice_type.json'
+            , method: "post",
+            url: "http://localhost:8082/queryList" //数据接口
+            , limit: 10
+            , pagr: false
+            , loading: false
+            , done: function (res) {
+                //如果是异步请求数据方式，res为接口返回的信息。
+                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                console.log(res);
+            }
         });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function (obj) {
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('确定删除该行数据?  (此操作不可逆转)', function (index) {
+                    $.ajax({
+                        url: "http://localhost:8082/delData",// 删除信息的接口
+                        type: "POST",
+                        data: {
+                            shop_name: data.shop_name,
+                            stock_name: data.stock_name,
+                            commodity_sku: data.commodity_sku,
+                            commodity_name: data.commodity_name,
+                            size: data.size,
+                            color: data.color,
+                            stock: data.stock,
+                            date: data.date
+                        },
+                        success: function (msg) {
+                            var json = JSON.parse(msg);
+                            var returnCode = json.returnCode;
+                            if (returnCode == 200) {
+                                //删除这一行 然后更新数据
+                                obj.del();
+                                //关闭弹框
+                                layer.close(index);
+                                layer.msg("删除成功", {icon: 6});
+                            } else {
+                                layer.msg("抱歉删除失败 重试或联系管理员", {icon: 5});
+                            }
+                        }
+                    });
+                    return false;
+                });
+            } else if (obj.event === 'edit') {
+                //formData = data;
+                if (obj.event === 'del') {
+                    layer.confirm('确定删除该行数据?  (此操作不可逆转)', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    // 编辑
+                    layer.open({
+                        maxmin: true,
+                        resize: false,
+                        type: 1,
+                        title: "修改库存数量",
+                        area: ['420px', '330px'],
+                        content: $("#popUpdateTest")//引用的弹出层的页面层的方式加载修改界面表单
+                    });
+                    //动态向表传递赋值可以参看文章进行修改界面的更新前数据的显示，当然也是异步请求的要数据的修改数据的获取
+                    setFormValue(obj, data);
+                }
+            }
+        });
+
+        //监听弹出框表单提交，massage是修改界面的表单数据'    submit(demo11),是确认修改按钮的绑定
+        function setFormValue(obj, data) {
+            form.on('submit(demo11)', function (massage) {
+                $.ajax({
+                    url: 'http://localhost:8082/updateReocrd',
+                    type: 'POST',
+                    dataType: 'json',
+
+                    data: {
+                        oldstock: data.stock,
+                        olddate: data.date,
+                        newstock: massage.field.newstock,
+                        newdate: massage.field.newdate
+                    },
+                    success: function (msg) {
+                        var returnCode = msg.returnCode;//取得返回数据（Sting类型的字符串）的信息进行取值判断
+                        if (returnCode == 200) {
+                            layer.closeAll('loading');
+                            layer.load(2);
+                            layer.msg("修改成功", {icon: 6});
+                            setTimeout(function () {
+                                obj.update({
+                                    stock: massage.field.newstock,
+                                    date: massage.field.newdate,
+                                });//修改成功修改表格数据不进行跳转
+                                layer.closeAll();//关闭所有的弹出层
+                            }, 1000);
+                            //  加载层-风格
+                        } else {
+                            layer.msg("修改失败", {icon: 5});
+                        }
+                    }
+                })
+            })
+
+        }
+
+        //添加采集设备
+        $('#btn-add').on('click', function () {
+            layer.open({
+                maxmin: true,
+                resize: false,
+                type: 1,
+                title: '添加产品',
+
+                area: ['420px', 'auto'],
+                shadeClose: false, //点击遮罩关闭
+                content: $("#add_commodity"),
+            });
+        });
+
+
+        //    监听添加功能的提交按钮
+        form.on('submit(demo1)', function (data) {
+            //layer.alert(JSON.stringify(data.field))
+            //data=JSON.stringify(data.field)
+            $.ajax({
+                url: 'http://localhost:8082/addNewReocrd',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    shop_name: data.field.shop_name,
+                    stock_name: data.field.stock_name,
+                    commodity_sku: data.field.commodity_sku,
+                    commodity_name: data.field.commodity_name,
+                    size: data.field.size,
+                    color: data.field.color,
+                    stock: data.field.stock,
+                    date: data.field.date,
+                },
+                success: function (msg) {
+                    var returnCode = msg.returnCode;
+                    if (returnCode == 200) {
+                        layer.msg("添加成功", {icon: 6});
+                        setTimeout(function () {
+                            window.parent.location.reload();//添加成功后刷新父界面
+                        }, 1000);
+                    } else {
+                        layer.msg("已经存在该设备,不支持重复添加", {icon: 5});
+                    }
+                }
+            })
+            return false;
+        });
+
+
+        //搜索功能的实现
+        $('.demoTable .layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
         var $ = layui.$, active = {
             reload: function () {
                 var demoReload = $('#demoReload');
 
                 //执行重载
-                table.reload('testReload', {
-
+                table.reload('dataCheck', {
                     where: {
-                        name: demoReload.val(),
-                        no: demoReload.val()
+                        field: demoReload.val()
                     }
                 });
             }
         };
-
-        $('.layui-btn').on('click', function () {
+        $('.demoTable .layui-btn').on('click', function () {
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
+        });
+
+        // 刷新表格
+        $('#btn-refresh').on('click', function () {
+            tableIns.reload()
         });
     });
 

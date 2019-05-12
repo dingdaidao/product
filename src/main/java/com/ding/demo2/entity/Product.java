@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Product {
     private int id;
+    private String shop_name;
     private String stock_name;
     private String commodity_sku;
     private String commodity_name;
@@ -18,6 +19,14 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getShop_name() {
+        return shop_name;
+    }
+
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
     }
 
     public String getStock_name() {

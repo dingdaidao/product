@@ -71,9 +71,9 @@ public class LoginControl {
     @PostMapping("/queryList")
     @ResponseBody
     public Layui queryList(HttpServletRequest httpServletRequest, ModelAndView modelAndView) {
-        String name = httpServletRequest.getParameter("name");
+        String name = httpServletRequest.getParameter("field");
         String no = httpServletRequest.getParameter("no");
-        System.out.println("name: "+name+ "no :");
+        System.out.println("name: " + name + "no :");
         List<Product> productList = mCommonService.searchProduct(name, no);
         //查询列表数据
         int total = productList.size();
@@ -83,4 +83,44 @@ public class LoginControl {
 
     }
 
+    @PostMapping("/delData")
+    @ResponseBody
+    public String deleRecord(HttpServletRequest request) {
+        String data = request.getParameter("data");
+        String shopName = request.getParameter("shop_name");
+        String stockName = request.getParameter("stock_name");
+        String commoditySku = request.getParameter("commodity_sku");
+        String commodityName = request.getParameter("commodity_name");
+        String size = request.getParameter("size");
+        String color = request.getParameter("color");
+        String stock = request.getParameter("stock");
+        String update = request.getParameter("date");
+        System.out.println("data:" + data + "   shopName" + shopName);
+       int succ =  mCommonService.delete(shopName, stockName, commoditySku, commodityName, size, color, stock, update);
+       if (succ>0) {
+           return "{\"returnCode\" :\"200\"}";
+       }else {
+           return  "{\"returnCode\" :\"200\",\"message\" :\"删除失败\"}";
+       }
+    }
+    @PostMapping("/addNewReocrd")
+    @ResponseBody
+    public String addRecord(HttpServletRequest request) {
+        String data = request.getParameter("data");
+        String shopName = request.getParameter("shop_name");
+        String stockName = request.getParameter("stock_name");
+        String commoditySku = request.getParameter("commodity_sku");
+        String commodityName = request.getParameter("commodity_name");
+        String size = request.getParameter("size");
+        String color = request.getParameter("color");
+        String stock = request.getParameter("stock");
+        String update = request.getParameter("date");
+        System.out.println("data:" + data + "   shopName" + shopName);
+        int succ =  mCommonService.addRecord(shopName, stockName, commoditySku, commodityName, size, color, stock, update);
+        if (succ>0) {
+            return "{\"returnCode\" :\"200\"}";
+        }else {
+            return  "{\"returnCode\" :\"200\",\"message\" :\"插入失败，已经存在\"}";
+        }
+    }
 }
