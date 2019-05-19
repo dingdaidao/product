@@ -380,12 +380,13 @@
         function setFormValue(obj, data) {
             form.on('submit(demo11)', function (massage) {
                 $.ajax({
-                    url: 'http://localhost:8082/updateReocrd',
+                    url: 'http://localhost:8082/updateRecord',
                     type: 'POST',
                     dataType: 'json',
 
                     data: {
                         oldstock: data.stock,
+                        commodity_sku: data.commodity_sku,//此行为新添加修改时返回的sku值 但是不需要修改sku 根据sku找到对应的库存和时间数据进行修改
                         olddate: data.date,
                         newstock: massage.field.newstock,
                         newdate: massage.field.newdate
@@ -397,10 +398,10 @@
                             layer.load(2);
                             layer.msg("修改成功", {icon: 6});
                             setTimeout(function () {
-                                obj.update({
-                                    stock: massage.field.newstock,
-                                    date: massage.field.newdate,
-                                });//修改成功修改表格数据不进行跳转
+                                // obj.update({
+                                //     stock: massage.field.newstock,
+                                //     date: massage.field.newdate,
+                                // });//修改成功修改表格数据不进行跳转
                                 layer.closeAll();//关闭所有的弹出层
                             }, 1000);
                             //  加载层-风格

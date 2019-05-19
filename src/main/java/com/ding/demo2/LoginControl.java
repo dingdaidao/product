@@ -123,4 +123,16 @@ public class LoginControl {
             return  "{\"returnCode\" :\"200\",\"message\" :\"插入失败，已经存在\"}";
         }
     }
+    @PostMapping("/updateRecord")
+    public String updateRecord(HttpServletRequest request){
+        String commoditySku = request.getParameter("commodity_sku");
+        String newStock = request.getParameter("newstock");
+        String newDate = request.getParameter("newdate");
+        int succ =mCommonService.updateProduct(commoditySku,Integer.valueOf(newStock),newDate);
+        if (succ>0) {
+            return "{\"returnCode\" :\"200\"}";
+        }else {
+            return  "{\"returnCode\" :\"200\",\"message\" :\"插入失败，已经存在\"}";
+        }
+    }
 }

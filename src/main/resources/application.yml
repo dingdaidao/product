@@ -9,10 +9,10 @@ spring:
     encoding: UTF-8
     mode: HTML5
   datasource:
-    name: demo
-    url: jdbc:mysql://127.0.0.1:3306/demo
+    name: incomeadmin
+    url: jdbc:mysql://127.0.0.1:3306/incomeadmin
     username: root
-    password: 123456
+    password: 12345678
     driver-class-name: com.mysql.jdbc.Driver
   mvc:
     static-path-pattern: /static/**

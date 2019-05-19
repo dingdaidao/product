@@ -23,8 +23,8 @@ public class CommonService {
     }
 
     public void insertProduct(Product product) {
-        if (productDao.queryById(product.getId()) != null) {
-            productDao.updateByNo(product.getId(), product.getShop_name(), product.getStock_name(), product.getCommodity_sku(), product.getCommodity_name(),
+        if (productDao.queryById(product.getCommodity_sku()) != null) {
+            productDao.updateByNo(product.getShop_name(), product.getStock_name(), product.getCommodity_sku(), product.getCommodity_name(),
                     product.getSize(), product.getColor(), product.getStock(), product.getDate());
         } else {
             productDao.insert(product.getShop_name(), product.getStock_name(), product.getCommodity_sku(), product.getCommodity_name(),
@@ -49,17 +49,21 @@ public class CommonService {
     }
 
     public int addRecord(String shopName, String stockName, String commoditySku, String commodityName, String size, String color, String stock, String update) {
-        int i=0;
+        String sku=null;
         try {
-           i =productDao.quryId(shopName, stockName, commoditySku, commodityName, size, color, stock, update);
+            sku =productDao.quryId(shopName, stockName, commoditySku, commodityName, size, color, stock, update);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (i > 0){
-            return 0;
-        }else {
+        if (StringUtils.isEmpty(sku)){
             productDao.insert(shopName, stockName, commoditySku, commodityName, size, color, Integer.valueOf(stock), update);
             return 1;
+        }else {
+            return 0;
         }
+    }
+
+    public int updateProduct(String commoditySku, int newStock, String newDate) {
+        return productDao.updateStockAndDate(commoditySku,newStock,newDate);
     }
 }
