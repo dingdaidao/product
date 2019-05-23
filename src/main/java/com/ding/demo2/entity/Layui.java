@@ -3,7 +3,7 @@ package com.ding.demo2.entity;
 import java.util.HashMap;
 import java.util.List;
 
-public class Layui  extends HashMap<String, Object> {
+public class Layui extends HashMap<String, Object> {
 
     public static Layui data(Integer count, List<?> data){
         Layui r = new Layui();

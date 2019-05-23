@@ -7,10 +7,7 @@ import com.ding.demo2.utils.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.management.Query;
@@ -24,6 +21,11 @@ import java.util.logging.Logger;
 public class LoginControl {
     @Autowired
     public CommonService mCommonService;
+
+    @GetMapping(value="/{name}")
+    public String commonController(@PathVariable String name) {
+        return name;
+    }
 
     @GetMapping(value = "/")
     public String login() {

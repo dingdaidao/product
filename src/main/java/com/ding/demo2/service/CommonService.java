@@ -12,7 +12,7 @@ import org.thymeleaf.util.TextUtils;
 import java.util.List;
 
 @Service
-public class CommonService {
+public class CommonService{
     @Autowired
     public UserDao mUserDao;
     @Autowired
